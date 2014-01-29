@@ -1,8 +1,8 @@
 class AddQuestionUserTable < ActiveRecord::Migration
   def change
-    create_table :questions_users do |t|
-      t.belongs_to :question
-      t.belongs_to :user
+    create_table :questions_users, id: false do |t|
+      t.references :question
+      t.references :user
     end
   end
 end

@@ -10,5 +10,12 @@
   <%= @question.answer %>
 </p>
 
+<p>
+  <strong>Contributors:</strong>
+  <% @users.each do |user|%>
+  <% @user.email %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>

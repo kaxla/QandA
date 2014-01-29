@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @users = @question.users
   end
 
   # GET /questions/new
@@ -25,6 +26,9 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
+    @users = @question.users
+    # @users = User.where(:id => params[:user_id])
+    @question.user << @user1
 
     respond_to do |format|
       if @question.save
@@ -69,6 +73,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :answer)
+      params.require(:question).permit(:title, :answer, :question_id)
     end
 end
