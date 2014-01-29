@@ -26,12 +26,13 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-    @users = @question.users
+    @user = current_user
     # @users = User.where(:id => params[:user_id])
-    @question.user << @user1
+    # @question.users << user_id
 
     respond_to do |format|
       if @question.save
+        @question.users << @user
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render action: 'show', status: :created, location: @question }
       else
